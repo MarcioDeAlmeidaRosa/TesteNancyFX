@@ -1,6 +1,11 @@
 Referências: 
 http://desenvolvedor.ninja/nancy-aplicacoes-web-mais-simples-faceis-e-leves/
 https://www.excella.com/insights/getting-started-nancyfx-and-asp-net-core
+http://blog.jonathanchannon.com/2012/12/19/why-use-nancyfx/
+
+
+http://www.marcusoft.net/2013/01/NancyTesting1.html
+
 
 Instalando pacote inicial
 1) https://www.nuget.org/packages/Nancy/2.0.0-clinteastwood
