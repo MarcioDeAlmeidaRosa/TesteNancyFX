@@ -17,7 +17,6 @@ namespace NancyFXAPI.Test
                 with.Header("Accept", "application/json");
                 with.HttpRequest();
             });
-
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
     }
