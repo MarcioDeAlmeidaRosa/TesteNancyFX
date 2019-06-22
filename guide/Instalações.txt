@@ -1,0 +1,19 @@
+Referências: 
+http://desenvolvedor.ninja/nancy-aplicacoes-web-mais-simples-faceis-e-leves/
+https://www.excella.com/insights/getting-started-nancyfx-and-asp-net-core
+
+Instalando pacote inicial
+1) https://www.nuget.org/packages/Nancy/2.0.0-clinteastwood
+Install-Package Nancy -Version 2.0.0-clinteastwood
+
+2) https://www.nuget.org/packages/Nancy.Hosting.Aspnet/
+Install-Package Nancy.Hosting.Aspnet -Version 2.0.0
+
+
+
+Extensions add:
+
+NamespaceFixer -> https://marketplace.visualstudio.com/items?itemName=vs-publisher-599079.FixNamespace
+SonarQubeLint -> https://marketplace.visualstudio.com/items?itemName=SonarSource.SonarLintforVisualStudio2019
+
+
