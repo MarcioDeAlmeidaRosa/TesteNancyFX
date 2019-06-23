@@ -23,3 +23,9 @@ NamespaceFixer -> https://marketplace.visualstudio.com/items?itemName=vs-publish
 SonarQubeLint -> https://marketplace.visualstudio.com/items?itemName=SonarSource.SonarLintforVisualStudio2019
 
 
+Selenium 
+https://medium.com/@renato.groffe/utilizando-o-selenium-webdriver-com-net-core-2-0-e-net-standard-2-0-31176aa5508e
+
+
+Mocks
+https://github.com/renatogroffe/Mocks-DotNetCore2
