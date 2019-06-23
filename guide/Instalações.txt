@@ -5,6 +5,7 @@ http://blog.jonathanchannon.com/2012/12/19/why-use-nancyfx/
 
 
 http://www.marcusoft.net/2013/01/NancyTesting1.html
+https://gist.github.com/tugberkugurlu/4157336
 
 
 Instalando pacote inicial

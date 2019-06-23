@@ -1,17 +1,18 @@
 using Nancy;
 using Nancy.Testing;
 using NancyFXAPI.Modules;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace NancyFXAPI.Test
 {
-    public class HelloNancyUnitTest
+    public class HelloNancyModuleUnitTest
     {
         [Fact]
-        public async void SimplestGetTest()
+        public async Task GetPrimeiroTest()
         {
-            var browser = new Browser(with => with.Module(new HelloNancy()));
-            var response = await browser.Get("/primeiro", (with) =>
+            var browser = new Browser(with => with.Module(new HelloNancyModule()));
+            var response = await browser.Get("/nancy", (with) =>
             {
                 with.Header("Authorization", "Bearer johnsmith");
                 with.Header("Accept", "application/json");

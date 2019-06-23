@@ -2,9 +2,9 @@
 
 namespace NancyFXAPI.Modules
 {
-    public class HelloNancy : NancyModule
+    public class HelloNancyModule : NancyModule
     {
-        public HelloNancy() : base("/primeiro")
+        public HelloNancyModule() : base("/nancy")
         {
             Get("/", parans => "Hello Nancy");
         }
