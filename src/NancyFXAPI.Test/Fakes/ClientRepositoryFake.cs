@@ -1,6 +1,7 @@
 ﻿using FizzWare.NBuilder;
 using NancyFXAPI.Domain;
 using NancyFXAPI.Repository.Contracts;
+using NancyFXAPI.Repository.Infrastructure.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace NancyFXAPI.Test.Fakes
             var cliente = clients.FirstOrDefault(c => c.ID == id);
             if (cliente == null)
             {
-                throw new Exception("Não encontrado registro");
+                throw new ResourceNotFoundException("Não encontrado registro");
             }
             clients.Remove(cliente);
         }
@@ -44,7 +45,7 @@ namespace NancyFXAPI.Test.Fakes
         public Client GetById(long id)
         {
             return clients.FirstOrDefault(c => c.ID == id) ??
-                throw new Exception("Não encontrado registro");
+                throw new ResourceNotFoundException("Não encontrado registro");
         }
 
         public void SaveOrUpdate(long id, Client data)

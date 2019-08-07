@@ -5,7 +5,7 @@ using NancyFXAPI.Repository.Contracts;
 
 namespace NancyFXAPI.Modules
 {
-    public class ClientModule : NancyModule
+    public class ClientModule : BaseModule
     {
         private readonly IRepository<Client> _repository;
 
@@ -33,6 +33,12 @@ namespace NancyFXAPI.Modules
                 var client = this.Bind<Client>();
                 _repository.SaveOrUpdate(0, client);
                 return client;
+            });
+
+            Delete("/{id}", _ =>
+            {
+                _repository.Delete(_.id);
+                return HttpStatusCode.Accepted;
             });
         }
     }

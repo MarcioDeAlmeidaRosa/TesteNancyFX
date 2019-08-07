@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace NancyFXAPI.Infrastructure
+namespace NancyFXAPI.Infrastructure.Configuration
 {
     public class Program
     {

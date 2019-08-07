@@ -17,4 +17,8 @@
     <ProjectReference Include="..\NancyFXAPI.Repository\NancyFXAPI.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
 </Project>

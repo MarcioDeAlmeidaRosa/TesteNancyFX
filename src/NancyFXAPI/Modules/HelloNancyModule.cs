@@ -1,8 +1,6 @@
-﻿using Nancy;
-
-namespace NancyFXAPI.Modules
+﻿namespace NancyFXAPI.Modules
 {
-    public class HelloNancyModule : NancyModule
+    public class HelloNancyModule : BaseModule
     {
         public HelloNancyModule() : base("/nancy")
         {

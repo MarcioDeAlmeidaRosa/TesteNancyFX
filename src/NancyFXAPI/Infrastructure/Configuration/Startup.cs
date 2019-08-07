@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Nancy.Owin;
 
-namespace NancyFXAPI.Infrastructure
+namespace NancyFXAPI.Infrastructure.Configuration
 {
     public class Startup
     {

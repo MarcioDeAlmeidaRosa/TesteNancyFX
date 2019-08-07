@@ -47,7 +47,7 @@ namespace NancyFXAPI.Test
         [InlineData(3)]
         [InlineData(50)]
         [InlineData(89)]
-        public async Task Deve_Retornar_Clientes_Pelo_ID(long id)
+        public async Task Deve_Retornar_Clientes_Pelo_ID_Com_Sucessp(long id)
         {
             // given
             var bootstrapper = new ConfigurableBootstrapper(with =>
@@ -67,7 +67,7 @@ namespace NancyFXAPI.Test
         [InlineData(3, 30)]
         [InlineData(50, 70)]
         [InlineData(89, 56)]
-        public async Task Deve_Atualizar_Idade_Cliente_Informado_Com_Idade_Informada(long id, int updateAge)
+        public async Task Deve_Atualizar_Idade_Cliente_Informado_Com_Idade_Informada_Com_Sucessp(long id, int updateAge)
         {
             var bootstrapper = new ConfigurableBootstrapper(with =>
             {
@@ -100,7 +100,7 @@ namespace NancyFXAPI.Test
         [InlineData(18, "Margareth Manes")]
         [InlineData(27, "Iolanda Breda")]
         [InlineData(35, "Manoel Nonato")]
-        public async Task Deve_Cadastrar_Novo_Cliente_(int age, string nome)
+        public async Task Deve_Cadastrar_Novo_Cliente_Com_Sucessp(int age, string nome)
         {
             var bootstrapper = new ConfigurableBootstrapper(with =>
             {
@@ -127,6 +127,33 @@ namespace NancyFXAPI.Test
             var clientAfter = response.Body.DeserializeJson<Client>();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.Equal(newClient.Age, clientAfter.Age);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(50)]
+        [InlineData(89)]
+        public async Task Deve_Remover_Cliente_Informado_Com_Sucessp(long id)
+        {
+            var bootstrapper = new ConfigurableBootstrapper(with =>
+            {
+                with.Dependency<ClientRepositoryFake>();
+                with.Module<ClientModule>();
+            });
+            var browser = new Browser(bootstrapper);
+            var response = await browser.Delete($"/client/{id}", (with) =>
+            {
+                with.Header("Authorization", "Bearer johnsmith");
+                with.Header("Accept", "application/json");
+                with.HttpRequest();
+            });
+
+            BrowserResponse responseClient = await RecuperarCliente(id, browser);
+
+            Assert.Equal(HttpStatusCode.Accepted, response.StatusCode);
+            Assert.Equal(HttpStatusCode.NotFound, responseClient.StatusCode);
         }
     }
 }
