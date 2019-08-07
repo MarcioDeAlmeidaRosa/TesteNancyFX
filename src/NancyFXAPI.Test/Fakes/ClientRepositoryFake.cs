@@ -1,6 +1,7 @@
 ﻿using FizzWare.NBuilder;
 using NancyFXAPI.Domain;
 using NancyFXAPI.Repository.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,26 +18,41 @@ namespace NancyFXAPI.Test.Fakes
                 .All()
                 .WithConstructor(() => new Client()
                 {
-                    ID = Faker.Number.Even(1, 100),
                     Name = Faker.Name.FullName(),
                     Age = Faker.Number.Even(1, 70)
                 })
            .Build();
+
+            clients.Select((value, index) => value.ID = index + 1);
         }
 
         public void Delete(long id)
         {
-            throw new System.NotImplementedException();
+            var cliente = clients.FirstOrDefault(c => c.ID == id);
+            if (cliente == null)
+            {
+                throw new Exception("Não encontrado registro");
+            }
+            clients.Remove(cliente);
         }
 
         public Client GetById(long id)
         {
-            return clients.FirstOrDefault(c => c.ID == id);
+            return clients.FirstOrDefault(c => c.ID == id) ??
+                throw new Exception("Não encontrado registro");
         }
 
         public void SaveOrUpdate(Client data)
         {
-            throw new System.NotImplementedException();
+            var cliente = clients.FirstOrDefault(c => c.ID == data.ID);
+            if (cliente != null)
+            {
+                cliente.Name = data.Name;
+                cliente.Age = data.Age;
+                return;
+            }
+            data.ID = clients.Max(c => c.ID) + 1;
+            clients.Add(data);
         }
     }
 }
