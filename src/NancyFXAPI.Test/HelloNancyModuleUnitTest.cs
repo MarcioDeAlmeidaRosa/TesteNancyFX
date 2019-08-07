@@ -9,7 +9,7 @@ namespace NancyFXAPI.Test
     public class HelloNancyModuleUnitTest
     {
         [Fact]
-        public async Task GetPrimeiroTest()
+        public async Task Deve_Retornar_Mensagem_Hello_Nancy()
         {
             var browser = new Browser(with => with.Module(new HelloNancyModule()));
             var response = await browser.Get("/nancy", (with) =>

@@ -1,4 +1,5 @@
 ﻿using Nancy;
+using Nancy.ModelBinding;
 using NancyFXAPI.Domain;
 using NancyFXAPI.Repository.Contracts;
 
@@ -15,13 +16,23 @@ namespace NancyFXAPI.Modules
 
         internal ClientModule() : base("/client")
         {
-            Get("/{id}", parans =>
+            Get("/", _ => _repository.GetAll());
+
+            Get("/{id}", _ => _repository.GetById(_.id));
+
+            Put("/{id}", _ =>
             {
-                long _id = parans.id;
+                var client = this.Bind<Client>();
+                _repository.SaveOrUpdate(_.id, client);
+                client.ID = _.id;
+                return client;
+            });
 
-                var result = _repository.GetById(_id);
-
-                return Response.AsJson(result);
+            Post("", _ =>
+            {
+                var client = this.Bind<Client>();
+                _repository.SaveOrUpdate(0, client);
+                return client;
             });
         }
     }

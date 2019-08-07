@@ -36,15 +36,20 @@ namespace NancyFXAPI.Test.Fakes
             clients.Remove(cliente);
         }
 
+        public Client[] GetAll()
+        {
+            return clients.ToArray();
+        }
+
         public Client GetById(long id)
         {
             return clients.FirstOrDefault(c => c.ID == id) ??
                 throw new Exception("Não encontrado registro");
         }
 
-        public void SaveOrUpdate(Client data)
+        public void SaveOrUpdate(long id, Client data)
         {
-            var cliente = clients.FirstOrDefault(c => c.ID == data.ID);
+            var cliente = id > 0 ? clients.FirstOrDefault(c => c.ID == id) : null;
             if (cliente != null)
             {
                 cliente.Name = data.Name;

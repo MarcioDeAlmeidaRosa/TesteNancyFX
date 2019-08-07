@@ -1,5 +1,6 @@
 ﻿using NancyFXAPI.Domain;
 using NancyFXAPI.Repository.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,17 +16,36 @@ namespace NancyFXAPI.Repository
 
         public void Delete(long id)
         {
-            throw new System.NotImplementedException();
+            var cliente = clients.FirstOrDefault(c => c.ID == id);
+            if (cliente == null)
+            {
+                throw new Exception("Não encontrado registro");
+            }
+            clients.Remove(cliente);
+        }
+
+        public Client[] GetAll()
+        {
+            return clients.ToArray();
         }
 
         public Client GetById(long id)
         {
-            return clients.FirstOrDefault(c => c.ID == id);
+            return clients.FirstOrDefault(c => c.ID == id) ??
+                throw new Exception("Não encontrado registro");
         }
 
-        public void SaveOrUpdate(Client data)
+        public void SaveOrUpdate(long id, Client data)
         {
-            throw new System.NotImplementedException();
+            var cliente = id > 0 ? clients.FirstOrDefault(c => c.ID == id) : null;
+            if (cliente != null)
+            {
+                cliente.Name = data.Name;
+                cliente.Age = data.Age;
+                return;
+            }
+            data.ID = clients.Max(c => c.ID) + 1;
+            clients.Add(data);
         }
     }
 }
