@@ -1,6 +1,7 @@
 ﻿using Nancy;
 using NancyFXAPI.Infrastructure;
 using System;
+using NewRelicAgent = NewRelic.Api.Agent.NewRelic;
 
 namespace NancyFXAPI.Modules
 {
@@ -18,6 +19,14 @@ namespace NancyFXAPI.Modules
             TraceID = Guid.NewGuid();
 
             OnError += new ErrorHandler(TraceID).OnError;
+
+            Before += ctx =>
+            {
+                var routeDescription = ctx.ResolvedRoute.Description;
+                NewRelicAgent.SetTransactionName("Custom/Endpoint", string.Format("{0} {1}", routeDescription.Method, routeDescription.Path));
+
+                return null;
+            };
         }
     }
 }
